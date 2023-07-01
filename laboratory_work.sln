@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laboratory_work", "laboratory_work\laboratory_work.csproj", "{E0E50C79-2E33-4CA0-BB04-2B5ACBF485CE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab0", "Lab0\Lab0.csproj", "{18A52B89-1215-497B-A995-8AB73DAD7796}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1", "Lab1\Lab1.csproj", "{FF1D86AD-3917-46E1-9A9D-515DA8DC2DB0}"
