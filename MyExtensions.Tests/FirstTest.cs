@@ -49,7 +49,7 @@ public class FirstTest
         //Arrange
         IList<int>? list = null;
         //Act + assert
-        Assert.Throws<InvalidOperationException>(() => list.First(a => a % 2 == 0));
+        Assert.Throws<NullReferenceException>(() => list.First(a => a % 2 == 0));
     }
     [Fact]
     public void TestNullCollectionWithNullPredicate()
@@ -57,7 +57,7 @@ public class FirstTest
         //Arrange
         IList<int>? list = null;
         //Act + assert
-        Assert.Throws<InvalidOperationException>(() => list.First(null));
+        Assert.Throws<NullReferenceException>(() => list.First(null));
     }
     [Fact]
     public void TestEmptyCollectionWithoutPredicate()
@@ -73,7 +73,7 @@ public class FirstTest
         //Arrange
         IList<int>? list = null;
         //Act + assert
-        Assert.Throws<InvalidOperationException>(() => list.First());
+        Assert.Throws<NullReferenceException>(() => list.First());
     }
     [Fact]
     public void TestCollectionWithoutPredicate()

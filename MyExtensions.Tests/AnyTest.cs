@@ -9,7 +9,7 @@ public class AnyTest
         //Arrange
         IList<int>? list = null;
         //Act + assert
-        Assert.Throws<InvalidOperationException>(() => list.Any(a => a % 2 == 0));
+        Assert.Throws<NullReferenceException>(() => list.Any(a => a % 2 == 0));
     }
     [Fact]
     public void TestNullCollectionWithoutPredicate()
@@ -17,7 +17,7 @@ public class AnyTest
         //Arrange
         IList<int>? list = null;
         //Act + assert
-        Assert.Throws<InvalidOperationException>(() => list.Any());
+        Assert.Throws<NullReferenceException>(() => list.Any());
     }
     [Fact]
     public void TestNullCollectionWithNullPredicate()
@@ -25,7 +25,7 @@ public class AnyTest
         //Arrange
         IList<int>? list = null;
         //Act + assert
-        Assert.Throws<InvalidOperationException>(() => list.Any(null));
+        Assert.Throws<NullReferenceException>(() => list.Any(null));
     }
     
     /////
