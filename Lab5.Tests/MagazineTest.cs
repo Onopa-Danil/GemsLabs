@@ -1,17 +1,20 @@
-﻿namespace Lab5.Tests;
+﻿using MyUnit;
+using MyUnit.Attributes;
+
+namespace Lab5.Tests;
 
 public class MagazineTest
 {
-    [Fact]
+    [MyFact]
     public void RemoveCartridgeFromEmptyMagazine()
     {
         //Arrange
         var magazine = new Magazine(0);
         //Act + Assert
-        Assert.Null(magazine.GetCartridge());
+        MyAssert.Null(magazine.GetCartridge());
     }
 
-    [Fact]
+    [MyFact]
     public void RemoveCartridgeFromNotEmptyMagazine()
     {
         //Arrange
@@ -19,10 +22,10 @@ public class MagazineTest
         //Act
         magazine.GetCartridge();
         //Assert
-        Assert.Equal(9, magazine.Count());
+        MyAssert.Equal(9, magazine.Count());
     }
 
-    [Fact]
+    [MyFact]
     public void AddCartridgeInEmptyMagazine()
     {
         //Arrange
@@ -30,40 +33,40 @@ public class MagazineTest
         //Act
         magazine.AddCartridge(new Cartridge(false));
         //Assert
-        Assert.Equal(1, magazine.Count());
+        MyAssert.Equal(1, magazine.Count());
     }
 
-    [Fact]
+    [MyFact]
     public void AddCartridgeInFullMagazine()
     {
         //Arrange
         var magazine = new Magazine(30);
         //Act + Assert
-        Assert.Throws<InvalidOperationException>
+        MyAssert.Throws<InvalidOperationException>
             (() => magazine.AddCartridge(new Cartridge(false)));
     }
 
-    [Fact]
+    [MyFact]
     public void AddSleeveInMagazine()
     {
         //Arrange
         var magazine = new Magazine(20);
         //Act + Assert
-        Assert.Throws<InvalidOperationException>
+        MyAssert.Throws<InvalidOperationException>
             (() => magazine.AddCartridge(new Cartridge(true)));
     }
-    [Fact]
+    [MyFact]
     public void MakeMagazineOverfull()
     {
         //Act + Assert
-        Assert.Throws<InvalidOperationException>
+        MyAssert.Throws<InvalidOperationException>
             (() => new Magazine(31));
     }
-    [Fact]
+    [MyFact]
     public void MakeMagazineNegativeCartridgeCount()
     {
         //Act + Assert
-        Assert.Throws<ArgumentOutOfRangeException>
+        MyAssert.Throws<ArgumentOutOfRangeException>
             (() => new Magazine(-1));
     }
 }

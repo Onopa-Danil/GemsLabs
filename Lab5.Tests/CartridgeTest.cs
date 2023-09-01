@@ -1,16 +1,19 @@
+using MyUnit;
+using MyUnit.Attributes;
+
 namespace Lab5.Tests;
 
 public class CartridgeTest
 {
-    [Fact]
+    [MyFact]
     public void TestOfUsedCartridge()
     {
         //Arrange
         var cartridge = new Cartridge(true);
         //Act + Assert
-        Assert.Throws<InvalidOperationException>(() => cartridge.Use());
+        MyAssert.Throws<InvalidOperationException>(() => cartridge.Use());
     }
-    [Fact]
+    [MyFact]
     public void TestOfNotUsedCartridge()
     {
         //Arrange
@@ -18,6 +21,6 @@ public class CartridgeTest
         //Act
         cartridge.Use();
         //Assert
-        Assert.True(cartridge.Used);
+        MyAssert.True(cartridge.Used);
     }
 }

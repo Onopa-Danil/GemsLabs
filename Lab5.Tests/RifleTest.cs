@@ -1,21 +1,24 @@
 ﻿
 
+using MyUnit;
+using MyUnit.Attributes;
+
 namespace Lab5.Tests;
 
 public class RifleTest
 {
-    [Fact]
+    [MyFact]
     public void RechargingWithEmptyChamber()
     {
         //Arrange
         var magazine = new Magazine(1);
         var rifle = new Rifle(false, magazine);
         //Act + Assert
-        Assert.False(rifle.Chamber);
+        MyAssert.False(rifle.Chamber);
         rifle.Recharge();
-        Assert.True(rifle.Chamber);
+        MyAssert.True(rifle.Chamber);
     }
-    [Fact]
+    [MyFact]
     public void RechargingWithNotEmptyChamber()
     {
         //Arrange
@@ -25,39 +28,39 @@ public class RifleTest
         rifle.Recharge();
         rifle.Recharge();
         //Assert
-        Assert.False(rifle.Chamber);
+        MyAssert.False(rifle.Chamber);
     }
-    [Fact]
+    [MyFact]
     public void RechargingWithFuseOn()
     {
         //Arrange
         var magazine = new Magazine(2);
         var rifle = new Rifle(true, magazine);
         //Act + Assert
-        Assert.Throws<InvalidOperationException>(() => rifle.Recharge());
+        MyAssert.Throws<InvalidOperationException>(() => rifle.Recharge());
 
     }
 
-    [Fact]
+    [MyFact]
     public void FireWithTheFuseOnAndFullMagazine()
     {
         //Arrange
         var magazine = new Magazine(30);
         var rifle = new Rifle(true, magazine);
         //Act + Assert
-        Assert.Null(rifle.Fire());
+        MyAssert.Null(rifle.Fire());
     }
-    [Fact]
+    [MyFact]
     public void FireWithTheFuseOffAndFullMagazineWithEmptyChamber()
     {
         //Arrange
         var magazine = new Magazine(30);
         var rifle = new Rifle(false, magazine);
         //Act + Assert
-        Assert.False(rifle.Chamber);
-        Assert.Null(rifle.Fire());
+        MyAssert.False(rifle.Chamber);
+        MyAssert.Null(rifle.Fire());
     }
-    [Fact]
+    [MyFact]
     public void FireWithTheFuseOffAndFullMagazineWithNotEmptyChamber()
     {
         //Arrange
@@ -67,45 +70,45 @@ public class RifleTest
         
         var rifle = new Rifle(false, magazine);
         //Act + Assert
-        Assert.False(rifle.Chamber);
+        MyAssert.False(rifle.Chamber);
         rifle.Recharge();
-        Assert.Same(cartridge, rifle.Fire());
-        Assert.False(rifle.Chamber);
+        MyAssert.Same(cartridge, rifle.Fire());
+        MyAssert.False(rifle.Chamber);
     }
     
-    [Fact]
+    [MyFact]
     public void RechargeWithEmptyMagazineAndFullChamber()
     {
         //Arrange
         var magazine = new Magazine(1);
         var rifle = new Rifle(false, magazine);
         //Act + Assert
-        Assert.False(rifle.Chamber);
+        MyAssert.False(rifle.Chamber);
         rifle.Recharge();
         rifle.Recharge();
-        Assert.False(rifle.Chamber);
+        MyAssert.False(rifle.Chamber);
     }
     
-    [Fact]
+    [MyFact]
     public void RechargeWithEmptyMagazineAndEmptyChamber()
     {
         //Arrange
         var magazine = new Magazine(0);
         var rifle = new Rifle(false, magazine);
         //Act + Assert
-        Assert.False(rifle.Chamber);
-        Assert.Throws<InvalidOperationException>(() => rifle.Recharge());
+        MyAssert.False(rifle.Chamber);
+        MyAssert.Throws<InvalidOperationException>(() => rifle.Recharge());
     }
 
-    [Fact]
+    [MyFact]
     public void FireWithEmptyMagazineEmptyChamberOffFuse()
     {
         //Arrange
         var magazine = new Magazine(0);
         var rifle = new Rifle(false, magazine);
         //Act + Assert
-        Assert.False(rifle.Chamber);
-        Assert.Null(rifle.Fire());
+        MyAssert.False(rifle.Chamber);
+        MyAssert.Null(rifle.Fire());
     }
     
  
