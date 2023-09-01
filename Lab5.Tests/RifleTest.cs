@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿
 
 namespace Lab5.Tests;
 
@@ -62,11 +62,8 @@ public class RifleTest
     {
         //Arrange
         var magazine = new Magazine(30);
-        
-        Queue<Cartridge> cartridges = (Queue<Cartridge>) typeof(Magazine)
-            .GetProperty("Cartridges", BindingFlags.Instance | BindingFlags.NonPublic)
-            .GetValue(magazine);
-        Cartridge cartridge = cartridges.Peek();
+        Cartridge? cartridge = magazine.GetCartridge();
+        magazine.AddCartridge(cartridge);
         
         var rifle = new Rifle(false, magazine);
         //Act + Assert

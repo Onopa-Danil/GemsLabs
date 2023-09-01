@@ -3,14 +3,13 @@
 public class Rifle
 {
     public bool Fuse { get; set; }
-    public bool Chamber { get; private set; }
+    public bool Chamber => _cartridgeInChamber is not null;
     public Magazine Cartridges { get; set; }
     private Cartridge? _cartridgeInChamber;
 
     public Rifle(bool fuse, Magazine cartridges)
     {
         Fuse = fuse;
-        Chamber = false;
         Cartridges = cartridges;
     }
 
@@ -23,13 +22,11 @@ public class Rifle
                 if (Cartridges.Empty())
                     throw new InvalidOperationException();
                 _cartridgeInChamber = Cartridges.GetCartridge();
-                Chamber = true;
                 return null;
             }
 
             Cartridge cartridge = _cartridgeInChamber;
             _cartridgeInChamber = null;
-            Chamber = false;
             return cartridge;
         }
 
